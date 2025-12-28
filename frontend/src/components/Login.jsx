@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { login } from '../api'
 
 export default function Login({ onLoginSuccess }) {
-    const [credentials, setCredentials] = useState({ username: 'abhacreations0110@gmail.com', password: 'AbhaCreations@123' })
+    const [credentials, setCredentials] = useState({ username: '', password: '' })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const [bgIndex, setBgIndex] = useState(0)
