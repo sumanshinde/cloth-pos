@@ -11,8 +11,8 @@ This project has two parts: **backend** (Django) and **frontend** (React). You n
 | **Name** | `cloth-pos-backend` | Or any name you like |
 | **Runtime** | **Python 3** | |
 | **Root Directory** | `backend` | **CRITICAL:** This tells Render to look inside the backend folder. |
-| **Build Command** | `pip install -r requirements.txt` | Installs dependencies. |
-| **Start Command** | `gunicorn backend_proj.wsgi:application` | Starts the server. |
+| **Build Command** | `./build.sh` | Installs deps, migrates DB, collects static. |
+| **Start Command** | `python -m gunicorn backend_proj.wsgi:application` | Starts the server (safer command). |
 
 ### Environment Variables (Advanced)
 Add these in the "Environment" tab:
