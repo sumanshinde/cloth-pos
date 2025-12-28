@@ -34,21 +34,24 @@ function App() {
       {/* Navigation */}
       <nav className="bg-black border-b border-amber-400/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-48">
-            <div className="flex items-center">
+          <div className="flex flex-col md:flex-row items-center justify-between py-4 md:h-32 gap-4">
+            {/* Logo Section */}
+            <div className="flex items-center w-full md:w-auto justify-center md:justify-start">
               <div
                 onClick={() => setCurrentView('dashboard')}
-                className="flex items-center gap-6 cursor-pointer hover:opacity-80 transition-opacity"
+                className="flex items-center gap-3 md:gap-6 cursor-pointer hover:opacity-80 transition-opacity"
               >
-                {/* Massive Logo */}
-                <img src="/logo.png" alt="ABHA" className="h-40 w-40 object-contain" />
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-4xl  text-amber-500 tracking-wider font-serif">ABHA CREATIONS</h1>
-                  <span className="text-sm text-orange-400 font-medium tracking-wide mt-1 font-sans">Sarees | Kurtis | Blouses | Leggings | Pants</span>
+                {/* Logo */}
+                <img src="/logo.png" alt="ABHA" className="h-20 w-20 md:h-28 md:w-28 object-contain" />
+                <div className="flex flex-col justify-center text-center md:text-left">
+                  <h1 className="text-2xl md:text-4xl text-amber-500 tracking-wider font-serif">ABHA CREATIONS</h1>
+                  <span className="text-[10px] md:text-sm text-orange-400 font-medium tracking-wide mt-1 font-sans">Sarees | Kurtis | Blouses | Leggings</span>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col items-end gap-4">
+
+            {/* Navigation and Profile */}
+            <div className="flex flex-col items-center md:items-end gap-3 w-full md:w-auto">
               <div className="flex items-center gap-4 text-amber-500/80 text-sm font-bold uppercase tracking-widest">
                 <span>👤 {username}</span>
                 <button
@@ -58,10 +61,12 @@ function App() {
                   Logout
                 </button>
               </div>
-              <div className="flex space-x-4">
+
+              {/* Scrollable Nav Buttons on Mobile */}
+              <div className="flex w-full md:w-auto overflow-x-auto pb-2 md:pb-0 gap-2 md:gap-4 no-scrollbar">
                 <button
                   onClick={() => setCurrentView('dashboard')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${currentView === 'dashboard'
+                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all text-sm md:text-base ${currentView === 'dashboard'
                     ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/50'
                     : 'text-amber-400 hover:bg-amber-500/20'
                     }`}
@@ -70,16 +75,16 @@ function App() {
                 </button>
                 <button
                   onClick={() => setCurrentView('pos')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${currentView === 'pos'
+                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all text-sm md:text-base ${currentView === 'pos'
                     ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/50'
                     : 'text-amber-400 hover:bg-amber-500/20'
                     }`}
                 >
-                  💳 Point of Sale
+                  💳 POS
                 </button>
                 <button
                   onClick={() => setCurrentView('inventory')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${currentView === 'inventory'
+                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all text-sm md:text-base ${currentView === 'inventory'
                     ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/50'
                     : 'text-amber-400 hover:bg-amber-500/20'
                     }`}
@@ -88,7 +93,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => setCurrentView('analytics')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${currentView === 'analytics'
+                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all text-sm md:text-base ${currentView === 'analytics'
                     ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/50'
                     : 'text-amber-400 hover:bg-amber-500/20'
                     }`}
