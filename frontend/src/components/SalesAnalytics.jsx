@@ -251,9 +251,32 @@ export default function SalesAnalytics() {
             {/* Recent Returns */}
             {
                 recent_returns && recent_returns.length > 0 && (
-                    <div className="bg-black/50 backdrop-blur-md rounded-2xl p-6 border border-red-500/30 shadow-2xl">
-                        <h2 className="text-2xl font-bold text-white mb-6">↩️ Recent Returns</h2>
-                        <div className="overflow-x-auto">
+                    <div className="bg-black/50 backdrop-blur-md rounded-xl md:rounded-2xl p-4 md:p-6 border border-red-500/30 shadow-2xl">
+                        <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">↩️ Recent Returns</h2>
+
+                        {/* Mobile Card View */}
+                        <div className="md:hidden space-y-3">
+                            {recent_returns.map((ret, index) => (
+                                <div key={index} className="bg-white/5 rounded-lg p-3 border border-red-500/20">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <div>
+                                            <div className="text-red-400 font-bold text-sm">#{ret.return_number}</div>
+                                            <div className="text-xs text-gray-400">Orig: {ret.original_sale__invoice_number}</div>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="text-red-400 font-bold text-sm">-₹{parseFloat(ret.refund_amount).toFixed(0)}</div>
+                                            <div className="text-[10px] text-gray-500">{new Date(ret.created_at).toLocaleDateString()}</div>
+                                        </div>
+                                    </div>
+                                    <span className="px-2 py-1 bg-red-500/10 text-red-400 rounded-full text-[10px] uppercase font-bold tracking-wider">
+                                        {ret.reason.replace('_', ' ')}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Desktop Table View */}
+                        <div className="overflow-x-auto hidden md:block">
                             <table className="w-full text-white">
                                 <thead>
                                     <tr className="border-b border-white/20">
@@ -290,9 +313,34 @@ export default function SalesAnalytics() {
             }
 
             {/* Top Selling Products */}
-            <div className="bg-black/50 backdrop-blur-md rounded-2xl p-6 border border-amber-400/30 shadow-2xl">
-                <h2 className="text-2xl font-bold text-white mb-6">🏆 Top Selling Products</h2>
-                <div className="overflow-x-auto">
+            <div className="bg-black/50 backdrop-blur-md rounded-xl md:rounded-2xl p-4 md:p-6 border border-amber-400/30 shadow-2xl">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">🏆 Top Selling Products</h2>
+
+                {/* Mobile Card View */}
+                <div className="md:hidden space-y-3">
+                    {!top_products || top_products.length === 0 ? (
+                        <div className="text-center py-6 text-gray-400 text-sm">No sales data available</div>
+                    ) : (
+                        top_products.map((product, index) => (
+                            <div key={index} className="bg-white/5 rounded-lg p-3 border border-amber-400/10 flex items-center gap-3">
+                                <div className={`font-bold text-xl w-8 text-center ${index === 0 ? 'text-yellow-400' : index === 1 ? 'text-gray-400' : index === 2 ? 'text-amber-600' : 'text-gray-600'}`}>
+                                    #{index + 1}
+                                </div>
+                                <div className="flex-1">
+                                    <div className="text-white font-semibold text-sm line-clamp-1">{product.product_name}</div>
+                                    <div className="text-xs text-gray-400">{product.variant_size} / {product.variant_color}</div>
+                                </div>
+                                <div className="text-right">
+                                    <div className="text-amber-400 font-bold text-sm">₹{product.total_revenue.toFixed(0)}</div>
+                                    <div className="text-[10px] text-gray-500">{product.total_quantity} sold</div>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+
+                {/* Desktop Table View */}
+                <div className="overflow-x-auto hidden md:block">
                     <table className="w-full text-white">
                         <thead>
                             <tr className="border-b border-white/20">
@@ -340,9 +388,48 @@ export default function SalesAnalytics() {
             </div>
 
             {/* Recent Sales */}
-            <div className="bg-black/50 backdrop-blur-md rounded-2xl p-6 border border-amber-400/30 shadow-2xl">
-                <h2 className="text-2xl font-bold text-white mb-6">🕒 Recent Sales</h2>
-                <div className="overflow-x-auto">
+            <div className="bg-black/50 backdrop-blur-md rounded-xl md:rounded-2xl p-4 md:p-6 border border-amber-400/30 shadow-2xl">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">🕒 Recent Sales</h2>
+
+                {/* Mobile Card View */}
+                <div className="md:hidden space-y-3">
+                    {!recent_sales || recent_sales.length === 0 ? (
+                        <div className="text-center py-6 text-gray-400 text-sm">No recent sales</div>
+                    ) : (
+                        recent_sales.map((sale) => (
+                            <div key={sale.id} className="bg-white/5 rounded-lg p-3 border border-amber-400/10">
+                                <div className="flex justify-between items-start mb-2">
+                                    <div>
+                                        <div className="text-amber-500 font-mono font-bold text-sm">{sale.invoice_number}</div>
+                                        <div className="text-xs text-gray-300 mt-0.5">{sale.customer_name || 'Walk-in'}</div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="text-green-400 font-bold text-sm">₹{parseFloat(sale.total_amount).toFixed(0)}</div>
+                                        <div className="text-[10px] text-gray-500">{new Date(sale.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                                    </div>
+                                </div>
+                                <div className="text-xs text-gray-400 mb-2 line-clamp-2">
+                                    {sale.items?.map(i => `${i.variant_name} (${i.quantity})`).join(', ')}
+                                </div>
+                                <div className="flex justify-between items-center pt-2 border-t border-white/5">
+                                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wider ${sale.payment_mode === 'CASH' ? 'bg-green-500/10 text-green-400' : 'bg-blue-500/10 text-blue-400'
+                                        }`}>
+                                        {sale.payment_mode}
+                                    </span>
+                                    <button
+                                        onClick={() => openReturnModal(sale)}
+                                        className="px-2 py-1 bg-red-500/10 text-red-400 rounded hover:bg-red-500/20 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                                    >
+                                        ↩️ Return
+                                    </button>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+
+                {/* Desktop Table View */}
+                <div className="overflow-x-auto hidden md:block">
                     <table className="w-full text-white">
                         <thead>
                             <tr className="border-b border-white/20">

@@ -61,15 +61,15 @@ export default function Login({ onLoginSuccess }) {
             <div className="absolute inset-0 backdrop-blur-[1px]"></div>
 
             <div className="relative w-full max-w-md animate-fade-in-up">
-                <div className="bg-black/60 backdrop-blur-xl rounded-3xl p-8 border border-amber-500/30 shadow-[0_0_50px_rgba(245,158,11,0.15)] overflow-hidden relative">
+                <div className="bg-black/60 backdrop-blur-xl rounded-3xl p-6 md:p-8 border border-amber-500/30 shadow-[0_0_50px_rgba(245,158,11,0.15)] overflow-hidden relative">
                     {/* Animated Glow Decor */}
                     <div className="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl animate-pulse"></div>
                     <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-orange-600/20 rounded-full blur-3xl animate-pulse delay-700"></div>
 
-                    <div className="text-center mb-8 relative">
-                        <img src="/logo.png" alt="ABHA" className="h-44 w-44 mx-auto drop-shadow-[0_0_20px_rgba(245,158,11,0.4)] mb-6 transition-transform hover:scale-105 duration-700" />
-                        <h2 className="text-2xl font-bold text-amber-500 tracking-[0.2em] font-serif leading-relaxed whitespace-nowrap">ABHA CREATIONS</h2>
-                        <p className="text-gray-400 text-xs uppercase tracking-[0.4em] font-bold mt-4 opacity-80">Executive Access Only</p>
+                    <div className="text-center mb-6 md:mb-8 relative">
+                        <img src="/logo.png" alt="ABHA" className="h-32 w-32 md:h-44 md:w-44 mx-auto drop-shadow-[0_0_20px_rgba(245,158,11,0.4)] mb-4 md:mb-6 transition-transform hover:scale-105 duration-700" />
+                        <h2 className="text-xl md:text-2xl font-bold text-amber-500 tracking-[0.2em] font-serif leading-relaxed whitespace-nowrap">ABHA CREATIONS</h2>
+                        <p className="text-gray-400 text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold mt-2 md:mt-4 opacity-80">Executive Access Only</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6 relative">

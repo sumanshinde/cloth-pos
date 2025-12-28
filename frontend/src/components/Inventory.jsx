@@ -276,7 +276,7 @@ export default function Inventory() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <h1 className="text-3xl font-bold text-white">📦 Inventory Management</h1>
+                <h1 className="text-2xl md:text-3xl font-bold text-white">📦 Inventory</h1>
 
                 {/* Search Bar */}
                 <div className="relative w-full md:w-96">
@@ -291,13 +291,13 @@ export default function Inventory() {
                             }}
                             onFocus={() => setShowSuggestions(true)}
                             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                            className="w-full px-4 py-3 pl-10 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-amber-500 shadow-lg"
+                            className="w-full px-4 py-2 md:py-3 pl-10 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-amber-500 shadow-lg text-sm md:text-base"
                         />
-                        <span className="absolute left-3 top-3.5 text-gray-400">🔍</span>
+                        <span className="absolute left-3 top-2.5 md:top-3.5 text-gray-400">🔍</span>
                         {searchQuery && (
                             <button
                                 onClick={() => setSearchQuery('')}
-                                className="absolute right-3 top-3.5 text-gray-400 hover:text-white"
+                                className="absolute right-3 top-2.5 md:top-3.5 text-gray-400 hover:text-white"
                             >
                                 ✕
                             </button>
@@ -311,7 +311,7 @@ export default function Inventory() {
                                 <div
                                     key={index}
                                     onClick={() => handleSearchSelect(name)}
-                                    className="px-4 py-2 text-white hover:bg-amber-500/20 cursor-pointer transition-colors border-b border-gray-700 last:border-0"
+                                    className="px-4 py-2 text-white hover:bg-amber-500/20 cursor-pointer transition-colors border-b border-gray-700 last:border-0 text-sm md:text-base"
                                 >
                                     {name}
                                 </div>
@@ -320,7 +320,7 @@ export default function Inventory() {
                     )}
                 </div>
 
-                <div className="flex gap-4">
+                <div className="flex flex-wrap justify-center gap-2 md:gap-4 w-full md:w-auto">
                     <button
                         onClick={async () => {
                             if (confirm('🚨 DANGER: This will delete ALL products, sales, and returns. Are you sure you want a fresh start?')) {
@@ -334,14 +334,14 @@ export default function Inventory() {
                                 }
                             }
                         }}
-                        className="px-4 py-3 bg-red-600/20 text-red-500 font-semibold rounded-lg hover:bg-red-600 hover:text-white active:bg-red-500 active:scale-95 transition-all border border-red-500/30 shadow-lg"
+                        className="flex-1 md:flex-none px-3 py-2 md:px-4 md:py-3 bg-red-600/20 text-red-500 font-semibold rounded-lg hover:bg-red-600 hover:text-white active:bg-red-500 active:scale-95 transition-all border border-red-500/30 shadow-lg text-xs md:text-base whitespace-nowrap"
                         title="Delete All Data & Start Fresh"
                     >
-                        🗑️ Reset Data
+                        🗑️ Reset
                     </button>
                     <button
                         onClick={() => setShowProductForm(true)}
-                        className="px-4 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-600 active:bg-gray-500 active:scale-95 transition-all border border-gray-600 shadow-lg"
+                        className="flex-1 md:flex-none px-3 py-2 md:px-4 md:py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-600 active:bg-gray-500 active:scale-95 transition-all border border-gray-600 shadow-lg text-xs md:text-base whitespace-nowrap"
                     >
                         ✨ New Product
                     </button>
@@ -353,9 +353,9 @@ export default function Inventory() {
                                 setShowAddForm(true)
                             }
                         }}
-                        className="px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-400 text-black font-semibold rounded-lg hover:from-amber-600 hover:to-amber-500 active:from-amber-400 active:to-amber-300 active:scale-95 transition-all shadow-xl"
+                        className="flex-1 md:flex-none px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-amber-500 to-amber-400 text-black font-semibold rounded-lg hover:from-amber-600 hover:to-amber-500 active:from-amber-400 active:to-amber-300 active:scale-95 transition-all shadow-xl text-xs md:text-base whitespace-nowrap"
                     >
-                        {showAddForm ? '❌ Close Form' : '➕ Bulk Add Sizes'}
+                        {showAddForm ? '❌ Close' : '➕ Add Stock'}
                     </button>
                 </div>
             </div>
@@ -363,11 +363,11 @@ export default function Inventory() {
             {/* Create Product Modal */}
             {showProductForm && (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-gray-900 rounded-2xl p-8 border border-amber-400/30 shadow-2xl w-full max-w-md">
-                        <h2 className="text-2xl font-bold text-white mb-6">✨ Create New Product</h2>
+                    <div className="bg-gray-900 rounded-2xl p-6 md:p-8 border border-amber-400/30 shadow-2xl w-full max-w-md">
+                        <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">✨ Create New Product</h2>
                         <form onSubmit={handleProductSubmit} className="space-y-4">
                             <div>
-                                <label className="block text-white mb-2">Product Name</label>
+                                <label className="block text-white mb-2 text-sm md:text-base">Product Name</label>
                                 <input
                                     required
                                     type="text"
@@ -378,7 +378,7 @@ export default function Inventory() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-white mb-2">Category</label>
+                                <label className="block text-white mb-2 text-sm md:text-base">Category</label>
                                 <div className="flex gap-2">
                                     <select
                                         value={productFormData.category}
@@ -411,7 +411,7 @@ export default function Inventory() {
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-white mb-2">Brand (Optional)</label>
+                                <label className="block text-white mb-2 text-sm md:text-base">Brand (Optional)</label>
                                 <input
                                     type="text"
                                     value={productFormData.brand}
@@ -425,7 +425,7 @@ export default function Inventory() {
                                     type="submit"
                                     className="flex-1 py-2 bg-amber-500 text-black font-bold rounded-lg hover:bg-amber-600 active:bg-amber-400 active:scale-95 transition-all"
                                 >
-                                    Create Product
+                                    Create
                                 </button>
                                 <button
                                     type="button"
@@ -443,15 +443,15 @@ export default function Inventory() {
             {/* Delete Confirmation Modal */}
             {showDeleteConfirm && variantToDelete && (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-gray-900 rounded-2xl p-8 border border-red-500/30 shadow-2xl w-full max-w-md text-center">
+                    <div className="bg-gray-900 rounded-2xl p-6 md:p-8 border border-red-500/30 shadow-2xl w-full max-w-md text-center">
                         <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span className="text-3xl">🗑️</span>
                         </div>
                         <h2 className="text-2xl font-bold text-white mb-2">Delete Item?</h2>
-                        <p className="text-gray-400 mb-6">
+                        <p className="text-gray-400 mb-6 text-sm md:text-base">
                             Are you sure you want to delete <br />
                             <span className="text-amber-400 font-bold">{variantToDelete.product_name}</span>
-                            <span className="block text-sm mt-1">
+                            <span className="block text-xs md:text-sm mt-1">
                                 Size: <strong className="text-white">{variantToDelete.size}</strong> |
                                 Color: <strong className="text-white">{variantToDelete.color}</strong>
                             </span>
@@ -476,22 +476,22 @@ export default function Inventory() {
 
             {/* Bulk Add/Edit Variant Form */}
             {showAddForm && (
-                <div className="bg-black/50 backdrop-blur-md rounded-2xl p-6 border border-amber-400/30 shadow-2xl relative">
-                    <div id="success-msg" className="absolute top-4 right-4 bg-green-500 text-black px-4 py-2 rounded-lg font-bold opacity-0 transition-opacity pointer-events-none z-10">
-                        ✅ Success! Saved all variants.
+                <div className="bg-black/50 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-amber-400/30 shadow-2xl relative">
+                    <div id="success-msg" className="absolute top-4 right-4 bg-green-500 text-black px-4 py-2 rounded-lg font-bold opacity-0 transition-opacity pointer-events-none z-10 text-sm md:text-base">
+                        ✅ Saved!
                     </div>
-                    <h2 className="text-2xl font-bold text-white mb-4">
+                    <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
                         {editingVariant ? '✏️ Edit Variant' : '➕ Bulk Add Size Matrix'}
                     </h2>
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                             <div>
-                                <label className="block text-white mb-2">Product</label>
+                                <label className="block text-white mb-2 text-sm">Product</label>
                                 <select
                                     required
                                     value={formData.product}
                                     onChange={(e) => setFormData({ ...formData, product: e.target.value })}
-                                    className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                    className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm md:text-base"
                                 >
                                     <option value="">Select Product</option>
                                     {Object.values(
@@ -508,13 +508,13 @@ export default function Inventory() {
                             </div>
 
                             <div>
-                                <label className="block text-white mb-2">Color</label>
+                                <label className="block text-white mb-2 text-sm">Color</label>
                                 <select
                                     ref={colorInputRef}
                                     required
                                     value={formData.color}
                                     onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                                    className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                    className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm md:text-base"
                                 >
                                     <option value="">Select Color</option>
                                     {['Red', 'Blue', 'Green', 'Black', 'White', 'Yellow', 'Maroon', 'Navy', 'Grey', 'Pink', 'Gold', 'Silver', 'Beige', 'Orange'].map(color => (
@@ -524,67 +524,67 @@ export default function Inventory() {
                             </div>
 
                             <div>
-                                <label className="block text-white mb-2">Price (₹)</label>
+                                <label className="block text-white mb-2 text-sm">Price (₹)</label>
                                 <input
                                     required
                                     type="number"
                                     step="0.01"
                                     value={formData.price_retail}
                                     onChange={(e) => setFormData({ ...formData, price_retail: e.target.value })}
-                                    className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                    className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm md:text-base"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-white mb-2">GST Rate (%)</label>
+                                <label className="block text-white mb-2 text-sm">GST Rate (%)</label>
                                 <input
                                     type="number"
                                     step="0.01"
                                     value={formData.gst_rate}
                                     onChange={(e) => setFormData({ ...formData, gst_rate: e.target.value })}
-                                    className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                    className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm md:text-base"
                                 />
                             </div>
                         </div>
 
                         {/* Size Matrix */}
-                        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                            <h3 className="text-lg font-semibold text-amber-400 mb-4 flex items-center gap-2">
+                        <div className="bg-white/5 rounded-xl p-3 md:p-4 border border-white/10">
+                            <h3 className="text-base md:text-lg font-semibold text-amber-400 mb-4 flex items-center gap-2">
                                 📏 Size Matrix
-                                <span className="text-xs font-normal text-gray-400">(Enable sizes and enter stock)</span>
+                                <span className="text-xs font-normal text-gray-400">(Enable & enter stock)</span>
                             </h3>
                             <div className="space-y-2">
                                 {STANDARD_SIZES.map(size => (
-                                    <div key={size} className={`grid grid-cols-12 gap-3 items-center p-2 rounded-lg transition-colors ${formData.sizeMap[size].enabled ? 'bg-amber-500/10' : 'hover:bg-white/5'}`}>
-                                        <div className="col-span-2 flex items-center gap-2">
+                                    <div key={size} className={`grid grid-cols-12 gap-2 md:gap-3 items-center p-2 rounded-lg transition-colors ${formData.sizeMap[size].enabled ? 'bg-amber-500/10' : 'hover:bg-white/5'}`}>
+                                        <div className="col-span-3 md:col-span-2 flex items-center gap-2">
                                             <input
                                                 type="checkbox"
                                                 checked={formData.sizeMap[size].enabled}
                                                 onChange={(e) => updateSizeDetail(size, 'enabled', e.target.checked)}
                                                 className="w-5 h-5 accent-amber-500 cursor-pointer"
                                             />
-                                            <span className="text-white font-bold">{size}</span>
+                                            <span className="text-white font-bold text-sm md:text-base">{size}</span>
                                         </div>
 
-                                        <div className="col-span-3">
+                                        <div className="col-span-3 md:col-span-3">
                                             <input
                                                 disabled={!formData.sizeMap[size].enabled}
                                                 type="number"
                                                 placeholder="Qty"
                                                 value={formData.sizeMap[size].stock}
                                                 onChange={(e) => updateSizeDetail(size, 'stock', e.target.value)}
-                                                className="w-full px-3 py-1 rounded-md bg-black/50 text-white border border-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-sm focus:border-amber-500"
+                                                className="w-full px-2 md:px-3 py-1 rounded-md bg-black/50 text-white border border-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-sm focus:border-amber-500"
                                             />
                                         </div>
 
-                                        <div className="col-span-5 flex gap-2">
+                                        <div className="col-span-6 md:col-span-5 flex gap-1 md:gap-2">
                                             <input
                                                 disabled={!formData.sizeMap[size].enabled}
                                                 type="text"
-                                                placeholder="Barcode (Optional)"
+                                                placeholder="Barcode"
                                                 value={formData.sizeMap[size].barcode}
                                                 onChange={(e) => updateSizeDetail(size, 'barcode', e.target.value)}
-                                                className="flex-1 px-3 py-1 rounded-md bg-black/50 text-white border border-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-sm font-mono placeholder-gray-600 focus:border-amber-500"
+                                                className="flex-1 px-2 md:px-3 py-1 rounded-md bg-black/50 text-white border border-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-xs md:text-sm font-mono placeholder-gray-600 focus:border-amber-500"
                                             />
                                             <button
                                                 type="button"
@@ -597,7 +597,7 @@ export default function Inventory() {
                                         </div>
 
                                         {formData.sizeMap[size].enabled && formData.sizeMap[size].stock > 0 && (
-                                            <div className="col-span-2 text-right">
+                                            <div className="col-span-2 text-right hidden md:block">
                                                 <span className="text-green-400 text-xs font-bold px-2 py-1 bg-green-500/10 rounded">READY</span>
                                             </div>
                                         )}
@@ -606,34 +606,94 @@ export default function Inventory() {
                             </div>
                         </div>
 
-                        <div className="flex justify-end gap-3">
+                        <div className="flex justify-end gap-3 pb-20 md:pb-0">
                             <button
                                 type="button"
                                 onClick={() => resetForm(true)}
-                                className="px-6 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-600 active:bg-gray-500 active:scale-95 transition-all"
+                                className="px-6 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-600 active:bg-gray-500 active:scale-95 transition-all text-sm md:text-base"
                             >
                                 Cancel
                             </button>
                             <button
                                 type="submit"
-                                className="px-10 py-2 bg-gradient-to-r from-amber-500 to-amber-400 text-black font-bold rounded-lg hover:from-amber-600 hover:to-amber-500 active:from-amber-400 active:to-amber-300 active:scale-95 transition-all shadow-xl"
+                                className="px-8 md:px-10 py-2 bg-gradient-to-r from-amber-500 to-amber-400 text-black font-bold rounded-lg hover:from-amber-600 hover:to-amber-500 active:from-amber-400 active:to-amber-300 active:scale-95 transition-all shadow-xl text-sm md:text-base"
                             >
-                                {editingVariant ? '💾 Update Variant' : '🚀 Save All Variants'}
+                                {editingVariant ? '💾 Update' : '🚀 Save'}
                             </button>
                         </div>
                     </form>
                 </div>
             )}
 
-            {/* Inventory Table */}
-            <div className="bg-black/50 backdrop-blur-md rounded-2xl p-6 border border-amber-400/30 shadow-2xl overflow-x-auto">
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold text-white">📦 Current Stock Inventory</h2>
-                    <div className="text-gray-400 text-sm">
-                        Showing <span className="text-amber-400 font-bold">{filteredVariants.length}</span> items
+            {/* Inventory List - Mobile Card View & Desktop Table View */}
+            <div className="bg-black/50 backdrop-blur-md rounded-2xl md:p-6 border border-amber-400/30 shadow-2xl overflow-hidden pb-24 md:pb-6">
+                <div className="flex justify-between items-center p-4 md:p-0 md:mb-6">
+                    <h2 className="text-xl md:text-2xl font-bold text-white">📦 Stock</h2>
+                    <div className="text-gray-400 text-xs md:text-sm">
+                        <span className="text-amber-400 font-bold">{filteredVariants.length}</span> items
                     </div>
                 </div>
-                <table className="w-full text-white">
+
+                {/* Mobile Card View */}
+                <div className="md:hidden space-y-3 px-3">
+                    {filteredVariants.length === 0 ? (
+                        <div className="text-center py-10 text-gray-400">No items found</div>
+                    ) : (
+                        filteredVariants.map(variant => (
+                            <div
+                                key={variant.id}
+                                onClick={() => handleQuickAdd(variant)}
+                                className="bg-gray-800/80 rounded-xl p-4 border border-white/5 active:border-amber-500/50 transition-all shadow-lg"
+                            >
+                                <div className="flex justify-between items-start mb-2">
+                                    <div>
+                                        <div className="font-bold text-white text-base">{variant.product_name}</div>
+                                        <div className="text-xs text-gray-400 font-mono mt-0.5">{variant.barcode}</div>
+                                    </div>
+                                    <span className={`px-2 py-1 rounded text-xs font-bold ${variant.stock_quantity <= 0 ? 'bg-red-500/20 text-red-500' :
+                                        variant.stock_quantity < 5 ? 'bg-orange-500/20 text-orange-400' :
+                                            'bg-green-500/20 text-green-400'
+                                        }`}>
+                                        Qty: {variant.stock_quantity}
+                                    </span>
+                                </div>
+
+                                <div className="flex justify-between items-center text-sm mb-3">
+                                    <div className="text-gray-300">
+                                        Size: <span className="text-white font-semibold">{variant.size}</span>
+                                        <span className="mx-2 text-gray-600">|</span>
+                                        Color: <span className="text-white font-semibold">{variant.color}</span>
+                                    </div>
+                                    <div className="font-bold text-amber-400">₹{parseFloat(variant.price_retail).toFixed(0)}</div>
+                                </div>
+
+                                <div className="grid grid-cols-3 gap-2">
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); handleQuickAdd(variant) }}
+                                        className="py-1.5 bg-amber-600/20 text-amber-400 rounded-lg text-xs font-bold border border-amber-600/30"
+                                    >
+                                        ➕ Add Size
+                                    </button>
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); handleEdit(variant) }}
+                                        className="py-1.5 bg-blue-600/20 text-blue-400 rounded-lg text-xs font-bold border border-blue-600/30"
+                                    >
+                                        ✏️ Edit
+                                    </button>
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); handleDelete(variant) }}
+                                        className="py-1.5 bg-red-600/20 text-red-400 rounded-lg text-xs font-bold border border-red-600/30"
+                                    >
+                                        🗑️ Delete
+                                    </button>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+
+                {/* Desktop Table View */}
+                <table className="w-full text-white hidden md:table">
                     <thead>
                         <tr className="border-b border-white/20 text-amber-400/80">
                             <th className="text-left py-3 px-2">Product Name</th>
