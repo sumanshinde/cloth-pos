@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api'
 
 export const api = axios.create({
     baseURL: API_BASE_URL,
@@ -38,4 +38,4 @@ export const fetchReturns = () => api.get('/returns/')
 export const createReturn = (data) => api.post('/returns/', data)
 
 // Auth APIs
-export const login = (credentials) => api.post('http://127.0.0.1:8000/api-token-auth/', credentials)
+export const login = (credentials) => api.post(`${API_BASE_URL.replace('/api', '')}/api-token-auth/`, credentials)

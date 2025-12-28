@@ -34,6 +34,13 @@ Add these in the "Environment" tab:
 | **Build Command** | `npm install; npm run build` | Installs and builds the React app. |
 | **Publish Directory** | `dist` | Vite builds to the `dist` folder by default. |
 
+### Environment Variables
+**CRITICAL:** You must verify your Backend URL first!
+1. Get your **Backend URL** from Render (e.g., `https://cloth-pos-backend.onrender.com`).
+2. Add this variable in Frontend Envirnoment settings:
+   - Key: `VITE_API_URL`
+   - Value: `https://cloth-pos-backend.onrender.com/api` (Make sure to add `/api` at the end!)
+
 ---
 
 ## 🐞 Troubleshooting "Status 127"
