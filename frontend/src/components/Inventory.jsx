@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { fetchProducts, fetchVariants, createVariant, updateVariant, deleteVariant, createProduct, fetchCategories } from '../api'
+import { fetchProducts, fetchVariants, createVariant, updateVariant, deleteVariant, createProduct, fetchCategories, createCategory } from '../api'
 
 export default function Inventory() {
     const [variants, setVariants] = useState([])
@@ -361,15 +361,36 @@ export default function Inventory() {
                             </div>
                             <div>
                                 <label className="block text-white mb-2">Category</label>
-                                <select
-                                    value={productFormData.category}
-                                    required
-                                    onChange={e => setProductFormData({ ...productFormData, category: e.target.value })}
-                                    className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30"
-                                >
-                                    <option value="">Select Category</option>
-                                    {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-                                </select>
+                                <div className="flex gap-2">
+                                    <select
+                                        value={productFormData.category}
+                                        required
+                                        onChange={e => setProductFormData({ ...productFormData, category: e.target.value })}
+                                        className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-amber-400/30"
+                                    >
+                                        <option value="">Select Category</option>
+                                        {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                                    </select>
+                                    <button
+                                        type="button"
+                                        onClick={async () => {
+                                            const newCat = prompt('Enter new category name (e.g. Sarees, Kurtis):')
+                                            if (newCat) {
+                                                try {
+                                                    await createCategory({ name: newCat })
+                                                    alert('✅ Category Created!')
+                                                    loadCategories()
+                                                } catch (err) {
+                                                    alert('Error creating category')
+                                                }
+                                            }
+                                        }}
+                                        className="px-3 py-2 bg-amber-500/20 text-amber-400 rounded-lg border border-amber-500/30 hover:bg-amber-500 hover:text-black transition-all"
+                                        title="Create New Category"
+                                    >
+                                        ➕
+                                    </button>
+                                </div>
                             </div>
                             <div>
                                 <label className="block text-white mb-2">Brand (Optional)</label>
