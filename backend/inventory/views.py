@@ -2,7 +2,32 @@ from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
 from django.db.models import ProtectedError
 from .models import Category, Product, ProductVariant
+from rest_framework import viewsets, filters, status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.db.models import ProtectedError
+from .models import Category, Product, ProductVariant
+from sales.models import Sale, Return
 from .serializers import CategorySerializer, ProductSerializer, ProductVariantSerializer
+
+@api_view(['POST'])
+def reset_database(request):
+    """
+    DANGEROUS: Wipes all data to start fresh.
+    """
+    try:
+        # 1. Delete Returns (Dependent on Sales)
+        Return.objects.all().delete()
+        # 2. Delete Sales (Dependent on Products/Variants)
+        Sale.objects.all().delete()
+        # 3. Delete Inventory
+        ProductVariant.objects.all().delete()
+        Product.objects.all().delete()
+        Category.objects.all().delete()
+        
+        return Response({"message": "Database reset successfully!"}, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
