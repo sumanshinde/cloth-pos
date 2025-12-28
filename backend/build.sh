@@ -6,5 +6,4 @@ pip install --upgrade pip
 pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate
-python clear_data.py
 python setup_admin.py
