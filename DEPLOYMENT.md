@@ -32,7 +32,7 @@ Add these in the "Environment" tab:
 | **Name** | `cloth-pos-frontend` | Or any name you like |
 | **Runtime** | **Node** | |
 | **Root Directory** | `frontend` | **CRITICAL:** This tells Render to look inside the frontend folder. |
-| **Build Command** | `npm install; npm run build` | Installs and builds the React app. |
+| **Build Command** | `npm install --include=dev; npm run build` | Installs devDeps (needed for Vite/Tailwind) and builds. |
 | **Publish Directory** | `dist` | Vite builds to the `dist` folder by default. |
 
 ### Environment Variables
