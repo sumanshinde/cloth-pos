@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { fetchProducts, fetchVariants, createVariant, updateVariant, deleteVariant, createProduct, fetchCategories, createCategory } from '../api'
+import { fetchProducts, fetchVariants, createVariant, updateVariant, deleteVariant, createProduct, fetchCategories, createCategory, resetDatabase } from '../api'
 
 export default function Inventory() {
     const [variants, setVariants] = useState([])
@@ -321,6 +321,24 @@ export default function Inventory() {
                 </div>
 
                 <div className="flex gap-4">
+                    <button
+                        onClick={async () => {
+                            if (confirm('🚨 DANGER: This will delete ALL products, sales, and returns. Are you sure you want a fresh start?')) {
+                                try {
+                                    await resetDatabase()
+                                    alert('✅ Database Reset Successfully!')
+                                    loadData()
+                                    loadCategories()
+                                } catch (err) {
+                                    alert('Error resetting database')
+                                }
+                            }
+                        }}
+                        className="px-4 py-3 bg-red-600/20 text-red-500 font-semibold rounded-lg hover:bg-red-600 hover:text-white active:bg-red-500 active:scale-95 transition-all border border-red-500/30 shadow-lg"
+                        title="Delete All Data & Start Fresh"
+                    >
+                        🗑️ Reset Data
+                    </button>
                     <button
                         onClick={() => setShowProductForm(true)}
                         className="px-4 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-600 active:bg-gray-500 active:scale-95 transition-all border border-gray-600 shadow-lg"

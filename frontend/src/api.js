@@ -21,6 +21,7 @@ api.interceptors.request.use((config) => {
 // Inventory APIs
 export const fetchCategories = () => api.get('/categories/')
 export const createCategory = (data) => api.post('/categories/', data)
+export const resetDatabase = () => api.post('/reset-database/')
 export const fetchProducts = () => api.get('/products/')
 export const fetchVariants = (search = '') =>
     api.get('/variants/', { params: { search } })
