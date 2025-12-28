@@ -1,3 +1,4 @@
+
 # 🚀 Deployment Guide for Render
 
 This project has two parts: **backend** (Django) and **frontend** (React). You need to deploy them as **two separate services** on Render.
