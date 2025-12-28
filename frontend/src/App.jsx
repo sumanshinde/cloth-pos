@@ -52,7 +52,8 @@ function App() {
 
             {/* Navigation and Profile */}
             <div className="flex flex-col items-center md:items-end gap-3 w-full md:w-auto">
-              <div className="flex items-center gap-4 text-amber-500/80 text-sm font-bold uppercase tracking-widest">
+              {/* Profile Block */}
+              <div className="flex items-center gap-4 text-amber-500/80 text-sm font-bold uppercase tracking-widest justify-center md:justify-end w-full">
                 <span>👤 {username}</span>
                 <button
                   onClick={handleLogout}
@@ -62,11 +63,11 @@ function App() {
                 </button>
               </div>
 
-              {/* Scrollable Nav Buttons on Mobile */}
-              <div className="flex w-full md:w-auto overflow-x-auto pb-2 md:pb-0 gap-2 md:gap-4 no-scrollbar">
+              {/* Desktop Nav Buttons (Hidden on Mobile) */}
+              <div className="hidden md:flex space-x-4">
                 <button
                   onClick={() => setCurrentView('dashboard')}
-                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all text-sm md:text-base ${currentView === 'dashboard'
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${currentView === 'dashboard'
                     ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/50'
                     : 'text-amber-400 hover:bg-amber-500/20'
                     }`}
@@ -75,7 +76,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => setCurrentView('pos')}
-                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all text-sm md:text-base ${currentView === 'pos'
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${currentView === 'pos'
                     ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/50'
                     : 'text-amber-400 hover:bg-amber-500/20'
                     }`}
@@ -84,7 +85,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => setCurrentView('inventory')}
-                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all text-sm md:text-base ${currentView === 'inventory'
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${currentView === 'inventory'
                     ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/50'
                     : 'text-amber-400 hover:bg-amber-500/20'
                     }`}
@@ -93,7 +94,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => setCurrentView('analytics')}
-                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-all text-sm md:text-base ${currentView === 'analytics'
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${currentView === 'analytics'
                     ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/50'
                     : 'text-amber-400 hover:bg-amber-500/20'
                     }`}
@@ -106,14 +107,41 @@ function App() {
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {currentView === 'dashboard' && <Dashboard onNavigate={setCurrentView} />}
-        {currentView === 'pos' && <PointOfSale />}
-        {currentView === 'inventory' && <Inventory />}
-        {currentView === 'analytics' && <SalesAnalytics />}
-      </main>
+      {/* MOBILE BOTTOM NAVIGATION BAR (Fixed) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black border-t border-amber-500/30 pb-safe z-50 flex justify-around items-center h-16 shadow-[0_-4px_20px_rgba(255,165,0,0.1)]">
+        <button onClick={() => setCurrentView('dashboard')} className={`flex flex-col items-center gap-1 p-2 ${currentView === 'dashboard' ? 'text-amber-500' : 'text-gray-500'}`}>
+          <span className="text-xl">📊</span>
+          <span className="text-[10px] font-bold">Home</span>
+        </button>
+        <button onClick={() => setCurrentView('pos')} className={`flex flex-col items-center gap-1 p-2 ${currentView === 'pos' ? 'text-amber-500' : 'text-gray-500'}`}>
+          <span className="text-xl">💳</span>
+          <span className="text-[10px] font-bold">Billing</span>
+        </button>
+        <button onClick={() => setCurrentView('inventory')} className={`flex flex-col items-center gap-1 p-2 ${currentView === 'inventory' ? 'text-amber-500' : 'text-gray-500'}`}>
+          <span className="text-xl">📦</span>
+          <span className="text-[10px] font-bold">Stock</span>
+        </button>
+        <button onClick={() => setCurrentView('analytics')} className={`flex flex-col items-center gap-1 p-2 ${currentView === 'analytics' ? 'text-amber-500' : 'text-gray-500'}`}>
+          <span className="text-xl">📈</span>
+          <span className="text-[10px] font-bold">Report</span>
+        </button>
+      </div>
+
+      {/* Padding for Mobile Bottom Nav */}
+      <div className="h-20 md:hidden"></div>
     </div>
+        </div >
+      </nav >
+
+    {/* Main Content */ }
+    < main className = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" >
+      { currentView === 'dashboard' && <Dashboard onNavigate={setCurrentView} />
+}
+{ currentView === 'pos' && <PointOfSale /> }
+{ currentView === 'inventory' && <Inventory /> }
+{ currentView === 'analytics' && <SalesAnalytics /> }
+      </main >
+    </div >
   )
 }
 
